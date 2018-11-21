@@ -57,7 +57,7 @@ namespace FF13LauncherPatcher
                             bytes[i] = (byte)(switchToAsian ? 0x17 : 0x16);
                             File.WriteAllBytes(pathToLauncher, bytes);
                             Console.ForegroundColor = ConsoleColor.Green;
-                            Console.WriteLine($"Switched to {(switchToAsian ? "Asian" : "Western")} launcher");
+                            Console.WriteLine($"Switched to the {(switchToAsian ? "Asian" : "Western")} launcher");
                             Console.ResetColor();
                             return;
                         }
