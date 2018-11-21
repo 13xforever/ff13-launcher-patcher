@@ -6,9 +6,9 @@ This small program will unlock the option to swap Confirm/Cancel buttons, which 
 How to use
 ==========
 
-Just run it, it should pick up the install path from the registry.
+Just run it, it should pick up the install path from the registry. To undo the change, just run it again.
 
-In case it fails to do so, put it inside the game folder, or just drag-and-drop `FFXiiiLauncher.exe` onto it
+In case it fails to do so, put it inside the game folder, or just drag-and-drop `FFXiiiLauncher.exe` onto it.
 
 Requirements
 ============
