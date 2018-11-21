@@ -9,7 +9,7 @@ namespace FF13LauncherPatcher
     internal static class Program
     {
         private const string LauncherFilename = "FFXiiiLauncher.exe";
-        private static readonly byte[] patchSequence = { 0x16, 0x80, 0x1D, 0x00, 0x00, 0x04, };
+        private static readonly byte[] patchSequence = { 0x80, 0x1D, 0x00, 0x00, 0x04, };
 
         static void Main(string[] args)
         {
@@ -46,12 +46,14 @@ namespace FF13LauncherPatcher
                 var bytes = File.ReadAllBytes(pathToLauncher);
                 for (int i = 0; i < bytes.Length - patchSequence.Length; i++)
                 {
-                    if (bytes[i] == patchSequence[0] && SequenceEqual(bytes, i + 1, patchSequence, 1, patchSequence.Length - 1))
+                    if ((bytes[i] == 0x16 || bytes[i] == 0x17) && SequenceEqual(bytes, i + 1, patchSequence, 0, patchSequence.Length))
                     {
-                        bytes[i] = 0x17;
+                        var switchToAsian = bytes[i] == 0x16;
+
+                        bytes[i] = (byte)(switchToAsian ? 0x17 : 0x16);
                         File.WriteAllBytes(pathToLauncher, bytes);
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Done");
+                        Console.WriteLine($"Switched to {(switchToAsian ? "Asian" : "Western")} launcher");
                         Console.ResetColor();
                         return;
                     }
